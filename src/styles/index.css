@@ -1,13 +1,32 @@
+/* Integration of tailwind parameters into css */
+@import "primereact/resources/themes/lara-light-blue/theme.css"
+  layer(primereact);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.sidebar-element {
+  @apply pl-5 hover:bg-dark-blue rounded-md font-bold hover:text-white-blue text-base py-3 flex items-center gap-2 w-full text-white;
+}
+
+.page-title {
+  @apply text-3xl font-extrabold mb-10 text-black;
+}
+
+.page-layout {
+  @apply p-5 text-black h-screen flex flex-col overflow-hidden;
 }
