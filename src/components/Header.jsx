@@ -21,8 +21,8 @@ function Header() {
         </div>
         <div className="flex gap-3 items-center">
           {loggedIn && (
-            <div>
-              <NotificationDisplay />
+            <div className="flex gap-3 items-center">
+              {/* <NotificationDisplay /> */}
               <UserMenu user={currentUser} />
             </div>
           )}

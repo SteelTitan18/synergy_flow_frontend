@@ -100,10 +100,12 @@ export default function Login() {
     dispatch(checkLoginStatus());
   }, [dispatch]);
 
+  console.log(userLoggedIn);
+
   if (userLoading || isLoginLoading) {
     return <Loader />;
   } else {
-    if (userLoggedIn && currentUser?.is_active) {
+    if (userLoggedIn) {
       return <Navigate to={routes.home.path} />;
     } else {
       return (

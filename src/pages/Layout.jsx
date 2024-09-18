@@ -23,6 +23,8 @@ export default function Layout() {
     return <Loader />;
   }
 
+  console.log(currentUser);
+
   if (!loggedIn) {
     return (
       <div className="flex">

@@ -24,9 +24,17 @@ code {
 }
 
 .page-title {
-  @apply text-3xl font-extrabold mb-10 text-black;
+  @apply text-3xl font-extrabold text-black;
 }
 
 .page-layout {
   @apply p-5 text-black h-screen flex flex-col overflow-hidden;
+}
+
+.button {
+  @apply flex items-center px-2 py-1 rounded-md bg-dark-blue text-white font-bold hover:shadow-md text-xl text-center gap-2;
+}
+
+.cancel-button {
+  @apply flex items-center px-2 py-1 rounded-md hover:bg-red hover:text-white text-grey-blue font-bold hover:shadow-md text-xl;
 }

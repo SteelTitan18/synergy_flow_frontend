@@ -16,7 +16,7 @@ export const userSlice = createSlice({
   reducers: {
     checkLoginStatus: (state) => {
       state.loading = true;
-      const user = sessionStorage.getItem("clinic_user");
+      const user = sessionStorage.getItem("user");
       if (user) {
         state.loggedIn = true;
         state.user = getSessionUser();

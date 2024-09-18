@@ -20,8 +20,8 @@ const routes = {
 
   // projects management pages
   projects: { path: "/projects" },
-  new_project: { path: "add-project/" },
-  project_details: { path: (project_id) => `${project_id}/` },
+  new_project: { path: "/projects/add-project/" },
+  project_details: { path: (project_id) => `/projects/${project_id}/` },
 };
 
 export default routes;

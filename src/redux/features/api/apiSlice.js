@@ -30,7 +30,56 @@ export const apiSlice = createApi({
       },
       invalidatesTags: ["User", "Project", "Task", "Message", "Notification"],
     }),
+
+    // projects queries
+    getProjects: builder.query({
+      query: () => `/project/project/`,
+      providesTags: ["Project"],
+    }),
+    getProjectDetails: builder.query({
+      query: (project_id) => `/project/project/${project_id}/`,
+      providesTags: ["Project"],
+    }),
+    addProject: builder.mutation({
+      query: (data) => ({
+        url: `/project/project/`,
+        body: data,
+        method: "POST",
+      }),
+      invalidatesTags: ["Project"],
+    }),
+    updateProject: builder.mutation({
+      query: (data) => ({
+        url: `/project/project/${data.id}/`,
+        body: data,
+        method: "PUT",
+      }),
+      invalidatesTags: ["Project"],
+    }),
+
+    // tasks queries
+    getProjectTasks: builder.query({
+      query: (project_id) => `/project/task/${project_id}/`,
+      providesTags: ["Task"],
+    }),
+    getTasks: builder.query({
+      query: () => `/project/task/`,
+      providesTags: ["Task"],
+    }),
+    getMemberTasks: builder.query({
+      query: (member_id) => `/project/task/${member_id}/`,
+      providesTags: ["Task"],
+    }),
   }),
 });
 
-export const { useLoginMutation } = apiSlice;
+export const {
+  useLoginMutation,
+  useGetProjectsQuery,
+  useGetMemberTasksQuery,
+  useGetProjectTasksQuery,
+  useGetTasksQuery,
+  useAddProjectMutation,
+  useGetProjectDetailsQuery,
+  useUpdateProjectMutation,
+} = apiSlice;

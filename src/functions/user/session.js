@@ -2,19 +2,21 @@ import routes from "../../utils/routes";
 import toast from "react-hot-toast";
 
 export const getSessionUser = () => {
-  return sessionStorage.getItem("user");
+  if (sessionStorage.getItem("user"))
+    return JSON.parse(sessionStorage.getItem("user"));
+  else return null;
 };
 
 export const getToken = () => {
-  return JSON.parse(sessionStorage.getItem("clinic_user")).token || null;
+  return JSON.parse(sessionStorage.getItem("user")).token || null;
 };
 
 export const setSessionUser = ({ user }) => {
-  sessionStorage.setItem("user", user);
+  sessionStorage.setItem("user", JSON.stringify(user));
 };
 
 export const removeUserSession = () => {
-  sessionStorage.removeItem("clinic_user");
+  sessionStorage.removeItem("user");
 };
 
 export const requestAuthentication = (navigate) => {

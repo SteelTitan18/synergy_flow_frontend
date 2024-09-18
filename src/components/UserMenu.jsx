@@ -26,13 +26,6 @@ export default function UserMenu({ user }) {
           },
         },
         {
-          label: "Tarifs",
-          icon: <TbReportMoney className="mr-2" />,
-          command: () => {
-            navigate(routes.pricing.path);
-          },
-        },
-        {
           label: "Déconnexion",
           icon: <TbLogout className="mr-2" />,
           /* command: () => {
@@ -50,9 +43,9 @@ export default function UserMenu({ user }) {
         className="flex flex-col items-center gap-5 text-4xl font-bold"
         onClick={(event) => menu.current.toggle(event)}
       >
-        {user?.clinic?.name}
-        <div className="h-25 w-auto flex justify-center self-center items-center gap-2 text-primary-font text-base font-normal">
+        <div className="h-25 w-auto flex justify-center self-center items-center gap-2 text-white text-base font-normal">
           <FaRegUserCircle size={28} />
+          {user?.username}
         </div>
       </div>
     </div>
