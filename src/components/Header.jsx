@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import NotificationDisplay from "./NotificationDisplay";
 
 function Header() {
-  const { user: currentUser } = useSelector((state) => state.user);
+  const { user: currentUser, loggedIn } = useSelector((state) => state.user);
 
   return (
     <div className="box-border w-full text-secondary-font bg-dark-blue flex flex-col object-right fixed z-10 text-white">
@@ -20,8 +20,12 @@ function Header() {
           </span>
         </div>
         <div className="flex gap-3 items-center">
-          <NotificationDisplay />
-          <UserMenu user={currentUser} />
+          {loggedIn && (
+            <div>
+              <NotificationDisplay />
+              <UserMenu user={currentUser} />
+            </div>
+          )}
         </div>
       </div>
     </div>

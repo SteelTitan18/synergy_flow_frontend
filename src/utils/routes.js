@@ -2,8 +2,9 @@
 
 const routes = {
   home: { path: "/" },
-  login: { path: "/login/" },
+  login: { path: "/login" },
   chatPage: { path: "chat/" },
+  not_authorized: { path: "/not_authorized" },
   dashboard: { path: "/dashboard/" },
   profile: { path: "/profile/" },
 

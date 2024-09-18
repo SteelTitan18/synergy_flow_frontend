@@ -32,3 +32,5 @@ export const apiSlice = createApi({
     }),
   }),
 });
+
+export const { useLoginMutation } = apiSlice;
