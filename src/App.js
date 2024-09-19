@@ -32,8 +32,8 @@ function App() {
             <Route
               index
               element={
-                <Protected /* Custom component whixch allowed only permit users to access a specific page */
-                  element={<Dashboard />}
+                <Protected
+                  element={<Projects />}
                   loggedIn={loggedIn}
                   user={currentUser}
                 />

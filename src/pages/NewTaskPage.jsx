@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { Button } from "primereact/button";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Back from "../components/BackComponent";
 
 export default function NewTask() {
   const { register, handleSubmit } = useForm();
@@ -57,6 +58,7 @@ export default function NewTask() {
 
   return (
     <div className="page-layout">
+      <Back />
       <Banner title={"Ajouter une nouvelle tâche"} />
 
       <form

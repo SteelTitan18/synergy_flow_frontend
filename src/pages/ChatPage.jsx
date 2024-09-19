@@ -16,6 +16,7 @@ import {
 import { requestHasFailed } from "../functions/api/functions";
 import Loader from "../components/Loader";
 import { useSelector } from "react-redux";
+import { Button } from "primereact/button";
 
 export default function Chat() {
   const project_id = useParams().project_id;
@@ -94,7 +95,7 @@ export default function Chat() {
       model={{
         message: message.content,
         sentTime: message.moment,
-        sender: message.username,
+        sender: message.sender,
       }}
     />
   ));
@@ -102,25 +103,27 @@ export default function Chat() {
   if (isProjectLoading || isMessagesLoading) return <Loader />;
 
   return (
-    <div className="chat-container">
-      <div className="chat-header">Chat</div>
+    <div className="page-layout">
+      <Banner title={`${project.label} : espace de discussions`} />
       <div className="message-container">
         {messages.map((message, index) => (
-          <div key={index} className="message">
-            <div className="message-username">{message.username}:</div>
-            <div className="message-content">{message.message}</div>
-            <div className="message-timestamp">{message.timestamp}</div>
+          <div key={index} className="card mt-5">
+            <div className="font-bold">{message.sender}</div>
+            <div className="message-content">{message.content}</div>
+            <div className="message-timestamp">{message.moment}</div>
           </div>
         ))}
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex gap-5 mt-10">
         <input
           type="text"
           placeholder="Type a message..."
           value={message}
           onChange={(event) => setMessage(event.target.value)}
         />
-        <button type="submit">Send</button>
+        <Button type="submit" className="button">
+          Envoyer
+        </Button>
       </form>
     </div>
   );
