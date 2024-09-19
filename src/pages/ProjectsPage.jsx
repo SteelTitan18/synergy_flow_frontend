@@ -7,6 +7,9 @@ import { useGetProjectsQuery } from "../redux/features/api/apiSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { TbListDetails } from "react-icons/tb";
 import routes from "../utils/routes";
+import { Button } from "primereact/button";
+import { FaPlus } from "react-icons/fa";
+import Back from "../components/BackComponent";
 
 export default function Projects() {
   const navigate = useNavigate();
@@ -52,11 +55,15 @@ export default function Projects() {
 
   return (
     <div className="page-layout">
-      <div className="mb-16">
-        <Banner title={"Liste des projets"} />
-      </div>
+      <Banner title={"Liste des projets"} />
 
       <Datatable data={data} columns={columns} />
+      <Button
+        className="button self-end mt-10"
+        onClick={() => navigate(routes.new_project.path)}
+      >
+        <FaPlus /> Ajouter un projet
+      </Button>
     </div>
   );
 }

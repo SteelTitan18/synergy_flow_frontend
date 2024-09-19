@@ -1,6 +1,7 @@
 import { Button } from "primereact/button";
 import Banner from "../components/Banner";
 import {
+  useDeleteProjectMutation,
   useGetProjectDetailsQuery,
   useUpdateProjectMutation,
 } from "../redux/features/api/apiSlice";
@@ -47,7 +48,9 @@ export default function ProjectDetails() {
     {
       label: "Supprimer",
       icon: <TbTrash className="text-white" size={20} />,
-      command: () => {},
+      command: () => {
+        handleDeleteProject();
+      },
     },
   ];
 
@@ -56,6 +59,9 @@ export default function ProjectDetails() {
 
   let [updateProject, { isLoading: isUpdatingProject }] =
     useUpdateProjectMutation();
+
+  let [deleteProject, { isLoading: isDeletingProject }] =
+    useDeleteProjectMutation();
 
   useEffect(() => {
     if (!isProjectLoading) {
@@ -71,6 +77,23 @@ export default function ProjectDetails() {
     return new Promise(async (resolve, reject) => {
       if (!isUpdatingProject) {
         let res = await updateProject({ ...project, ...data });
+        if (!requestHasFailed(res, navigate)) {
+          resolve("success");
+          navigate(-1);
+        } else {
+          reject("error");
+          for (var error in res?.error?.data?.details) {
+            toast.error(res?.error?.data?.details[error], { duration: 8000 });
+          }
+        }
+      }
+    });
+  }
+
+  async function handleDeleteProject() {
+    return new Promise(async (resolve, reject) => {
+      if (!isDeletingProject) {
+        let res = await deleteProject(project_id);
         if (!requestHasFailed(res, navigate)) {
           resolve("success");
           navigate(-1);

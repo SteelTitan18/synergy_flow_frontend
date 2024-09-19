@@ -5,6 +5,7 @@ import { useAddProjectMutation } from "../redux/features/api/apiSlice";
 import { requestHasFailed } from "../functions/api/functions";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Back from "../components/BackComponent";
 
 export default function NewProject() {
   const { register, handleSubmit } = useForm();
@@ -34,6 +35,7 @@ export default function NewProject() {
 
   return (
     <div className="page-layout">
+      <Back />
       <Banner title={"Ajouter un nouveau projet"} />
 
       <form

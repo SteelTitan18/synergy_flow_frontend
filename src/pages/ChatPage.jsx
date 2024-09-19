@@ -101,23 +101,6 @@ export default function Chat() {
 
   if (isProjectLoading || isMessagesLoading) return <Loader />;
 
-  /* return (
-    <div className="page-layout">
-      <Banner title={`${project?.label} : Espace de discussions`} />
-
-      <div style={{ position: "relative", height: "500px" }}>
-        <MainContainer>
-          <ChatContainer>
-            <MessageList>{messages_items}</MessageList>
-            <MessageInput
-              placeholder="Type message here"
-              attachButton={false}
-            />
-          </ChatContainer>
-        </MainContainer>
-      </div>
-    </div>
-  ); */
   return (
     <div className="chat-container">
       <div className="chat-header">Chat</div>

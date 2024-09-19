@@ -12,12 +12,12 @@ export default function SideBar() {
   return (
     <div className="bg-grey-blue w-full overflow-y-auto text-white h-full justify-between flex flex-col pb-5">
       <div className="">
-        <Link to={routes.home.path}>
+        {/* <Link to={routes.home.path}>
           <div className="sidebar-element">
             <RiDashboardFill />
             Dashboard
           </div>
-        </Link>
+        </Link> */}
         <Link to={routes.projects.path}>
           <div className="sidebar-element">
             <GrProjects />
@@ -30,12 +30,12 @@ export default function SideBar() {
             Tâches
           </div>
         </Link>
-        <Link to={routes.staff.path}>
+        {/* <Link to={routes.staff.path}>
           <div className="sidebar-element">
             <FaUsers />
             Équipe
           </div>
-        </Link>
+        </Link> */}
       </div>
       <div className="flex flex-col ml-5">
         <div className="flex flex-col">
