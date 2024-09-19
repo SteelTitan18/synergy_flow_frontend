@@ -3,7 +3,7 @@
 const routes = {
   home: { path: "/" },
   login: { path: "/login" },
-  chatPage: { path: "chat/" },
+  chatPage: { path: (project_id) => `/projects/${project_id}/chat/` },
   not_authorized: { path: "/not_authorized" },
   dashboard: { path: "/dashboard/" },
   profile: { path: "/profile/" },

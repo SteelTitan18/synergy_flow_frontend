@@ -10,6 +10,18 @@ import { requestHasFailed } from "../functions/api/functions";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader";
+import {
+  TbEdit,
+  TbMessage,
+  TbPlus,
+  TbTableOptions,
+  TbTrash,
+} from "react-icons/tb";
+import routes from "../utils/routes";
+import { SpeedDial } from "primereact/speeddial";
+import { Tooltip } from "primereact/tooltip";
+import { CgOptions } from "react-icons/cg";
+import { FaTimes } from "react-icons/fa";
 
 export default function ProjectDetails() {
   const { register, handleSubmit, setValue } = useForm();
@@ -17,6 +29,27 @@ export default function ProjectDetails() {
   const [project, setProject] = useState({});
   const project_id = useParams().project_id;
   const [readOnly, setReadOnly] = useState(true);
+  const floating_items = [
+    {
+      label: "Modifier",
+      icon: <TbEdit className="text-white" size={20} />,
+      command: () => {
+        setReadOnly(!readOnly);
+      },
+    },
+    {
+      label: "Chat",
+      icon: <TbMessage className="text-white" size={20} />,
+      command: () => {
+        navigate(routes.chatPage.path(project_id));
+      },
+    },
+    {
+      label: "Supprimer",
+      icon: <TbTrash className="text-white" size={20} />,
+      command: () => {},
+    },
+  ];
 
   let { data: project_fetched, isLoading: isProjectLoading } =
     useGetProjectDetailsQuery(project_id);
@@ -62,14 +95,7 @@ export default function ProjectDetails() {
 
   return (
     <div className="page-layout">
-      <div className="flex justify-between items-center mb-16">
-        <Banner title={"Détails d'un projet"} />
-        {readOnly && (
-          <Button className="button" onClick={() => setReadOnly(false)}>
-            Modifier
-          </Button>
-        )}
-      </div>
+      <Banner title={"Détails d'un projet"} />
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -104,6 +130,18 @@ export default function ProjectDetails() {
           </div>
         )}
       </form>
+      <Tooltip
+        target=".speeddial-bottom-right .p-speeddial-action"
+        className="p-10"
+      />
+      <SpeedDial
+        model={floating_items}
+        direction="up"
+        className="speeddial-bottom-right right-0 bottom-0"
+        buttonClassName="bg-dark-blue m-5"
+        showIcon={<CgOptions className="text-white" size={20} />}
+        hideIcon={<FaTimes className="text-white" size={20} />}
+      />
     </div>
   );
 }

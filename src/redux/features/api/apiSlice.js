@@ -70,6 +70,12 @@ export const apiSlice = createApi({
       query: (member_id) => `/project/task/${member_id}/`,
       providesTags: ["Task"],
     }),
+
+    // messages queries
+    getProjectMessages: builder.query({
+      query: (project_id) => `/chat/messages/?project_id=${project_id}`,
+      providesTags: ["Message"],
+    }),
   }),
 });
 
@@ -82,4 +88,5 @@ export const {
   useAddProjectMutation,
   useGetProjectDetailsQuery,
   useUpdateProjectMutation,
+  useGetProjectMessagesQuery,
 } = apiSlice;

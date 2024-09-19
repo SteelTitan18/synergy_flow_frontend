@@ -41,16 +41,6 @@ function App() {
             />
             <Route path={routes.login.path} element={<Login />} />
             <Route
-              path={routes.chatPage.path}
-              element={
-                <Protected
-                  element={<Chat />}
-                  loggedIn={loggedIn}
-                  user={currentUser}
-                />
-              }
-            />
-            <Route
               path={routes.profile.path}
               element={
                 <Protected
@@ -151,16 +141,28 @@ function App() {
                 />
               }
             />
-            <Route
-              path={routes.project_details.path(":project_id")}
-              element={
-                <Protected
-                  element={<ProjectDetails />}
-                  loggedIn={loggedIn}
-                  user={currentUser}
-                />
-              }
-            />
+            <Route path={routes.project_details.path(":project_id")}>
+              <Route
+                index
+                element={
+                  <Protected
+                    element={<ProjectDetails />}
+                    loggedIn={loggedIn}
+                    user={currentUser}
+                  />
+                }
+              ></Route>
+              <Route
+                path={routes.chatPage.path(":project_id")}
+                element={
+                  <Protected
+                    element={<Chat />}
+                    loggedIn={loggedIn}
+                    user={currentUser}
+                  />
+                }
+              />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
