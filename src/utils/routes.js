@@ -15,8 +15,8 @@ const routes = {
 
   // tasks management pages
   tasks: { path: "/tasks" },
-  new_task: { path: "add-task/" },
-  task_details: { path: (task_id) => `${task_id}/` },
+  new_task: { path: (project_id) => `/projects/${project_id}/new-task/` },
+  task_details: { path: (task_id) => `/tasks/${task_id}/` },
 
   // projects management pages
   projects: { path: "/projects" },

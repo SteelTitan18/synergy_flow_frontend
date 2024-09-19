@@ -7,6 +7,7 @@ import { Column } from "primereact/column";
 import Datatable from "../components/DataTable";
 import { TbListDetails } from "react-icons/tb";
 import { dateFormatterInv } from "../functions/utils/functions";
+import routes from "../utils/routes";
 
 export default function Tasks() {
   const navigate = useNavigate();
@@ -85,58 +86,65 @@ export default function Tasks() {
     }
   };
 
-  const data = tasks.map((task) => ({
-    key: task.id,
-    project: task.task_project,
-    label: task.label,
-    description: task.description,
-    start_date: task.start_date,
-    end_date:
-      new Date() >= dateFormatterInv(task.end_date) ? (
+  const data = tasks.map((task) => {
+    return {
+      key: task.id,
+      project: task.task_project.label,
+      label: task.label,
+      description: task.description,
+      start_date: task.start_date,
+      end_date:
+        new Date() >= dateFormatterInv(task.end_date) ? (
+          <>
+            <span className="text-red">{task.end_date}</span>
+          </>
+        ) : (
+          task.end_date
+        ),
+      priority: task.task_priority,
+      status: task.task_status,
+      actions: (
         <>
-          <span className="text-red">{task.end_date}</span>
+          <span className="flex">
+            <Link to={routes.task_details.path(task.id)}>
+              <span
+                className="bg-dark-blue flex justify-center items-center p-1.5 w-fit text-white rounded-md cursor-pointer mr-2"
+                title={"Consulter"}
+              >
+                <TbListDetails />
+              </span>
+            </Link>
+          </span>
         </>
-      ) : (
-        task.end_date
       ),
-    priority: task.task_priority,
-    status: task.task_status,
-    assignees: task.assignees,
-    actions: (
-      <>
-        <span className="flex">
-          <Link to={"#"}>
-            <span
-              className="bg-dark-blue flex justify-center items-center p-1.5 w-fit text-white rounded-md cursor-pointer mr-2"
-              title={"Consulter"}
-            >
-              <TbListDetails />
-            </span>
-          </Link>
-        </span>
-      </>
-    ),
-  }));
+    };
+  });
 
   const columns = [
     <Column key={"project"} header="PROJET" field={"project"} />,
-    <Column key={"label"} header="NOM" field={"label"} />,
-    <Column key={"description"} header="DESCRIPTION" field={"description"} />,
-    <Column key={"start_date"} header="DÉBUT" field={"start_date"} />,
-    <Column key={"end_date"} header="FIN" field={"end_date"} />,
+    <Column key={"label"} header="NOM" field={"label"} sortable />,
+    <Column
+      key={"description"}
+      header="DESCRIPTION"
+      field={"description"}
+      sortable
+    />,
+    <Column key={"start_date"} header="DÉBUT" field={"start_date"} sortable />,
+    <Column key={"end_date"} header="FIN" field={"end_date"} sortable />,
     <Column
       key={"priority"}
       header="PRIORITÉ"
       field={"priority"}
       body={priorityBodyTemplate}
+      sortable
     />,
     <Column
       key={"status"}
       header="STATUS"
       field={"status"}
       body={statusBodyTemplate}
+      sortable
     />,
-    <Column key={"assignees"} header="ASSIGNÉS" field={"assignees"} />,
     <Column key={"actions"} header="ACTIONS" field={"actions"} />,
   ];
 

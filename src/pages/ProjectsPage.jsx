@@ -10,9 +10,11 @@ import routes from "../utils/routes";
 import { Button } from "primereact/button";
 import { FaPlus } from "react-icons/fa";
 import Back from "../components/BackComponent";
+import { useSelector } from "react-redux";
 
 export default function Projects() {
   const navigate = useNavigate();
+  const { user: currentUser } = useSelector((state) => state.user);
 
   const [projects, setProjects] = useState([]);
 
@@ -58,12 +60,14 @@ export default function Projects() {
       <Banner title={"Liste des projets"} />
 
       <Datatable data={data} columns={columns} />
-      <Button
-        className="button self-end mt-10"
-        onClick={() => navigate(routes.new_project.path)}
-      >
-        <FaPlus /> Ajouter un projet
-      </Button>
+      {currentUser.type === "ADM" && (
+        <Button
+          className="button self-end mt-10"
+          onClick={() => navigate(routes.new_project.path)}
+        >
+          <FaPlus /> Ajouter un projet
+        </Button>
+      )}
     </div>
   );
 }

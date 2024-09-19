@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { useMediaQuery } from "@mui/material";
 import routes from "../utils/routes";
 import { TbReportMoney } from "react-icons/tb";
+import { logout } from "../redux/features/user/userSlice";
 
 export default function UserMenu({ user }) {
   const isonPortrait = useMediaQuery("only screen and (max-width : 550px)");
@@ -28,9 +29,9 @@ export default function UserMenu({ user }) {
         {
           label: "Déconnexion",
           icon: <TbLogout className="mr-2" />,
-          /* command: () => {
+          command: () => {
             dispatch(logout());
-          }, */
+          },
         },
       ],
     },

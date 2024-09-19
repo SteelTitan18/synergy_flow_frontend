@@ -98,17 +98,6 @@ function App() {
               }
             />
             <Route
-              path={routes.new_task.path}
-              element={
-                <Protected
-                  element={<NewTask />}
-                  loggedIn={loggedIn}
-                  user={currentUser}
-                  allowed={"ADM"}
-                />
-              }
-            />
-            <Route
               path={routes.task_details.path(":task_id")}
               element={
                 <Protected
@@ -152,6 +141,17 @@ function App() {
                   />
                 }
               ></Route>
+              <Route
+                path={routes.new_task.path(":project_id")}
+                element={
+                  <Protected
+                    element={<NewTask />}
+                    loggedIn={loggedIn}
+                    user={currentUser}
+                    allowed={"ADM"}
+                  />
+                }
+              />
               <Route
                 path={routes.chatPage.path(":project_id")}
                 element={

@@ -30,6 +30,14 @@ export const apiSlice = createApi({
       },
       invalidatesTags: ["User", "Project", "Task", "Message", "Notification"],
     }),
+    getProjectAssignees: builder.query({
+      query: (project_id) => `/project/custom_user/$project_id=${project_id}`,
+      providesTags: ["User"],
+    }),
+    getUsers: builder.query({
+      query: (project_id) => `/project/custom_user/`,
+      providesTags: ["User"],
+    }),
 
     // projects queries
     getProjects: builder.query({
@@ -66,16 +74,43 @@ export const apiSlice = createApi({
 
     // tasks queries
     getProjectTasks: builder.query({
-      query: (project_id) => `/project/task/${project_id}/`,
+      query: (project_id) => `/project/task/?project_id=${project_id}`,
       providesTags: ["Task"],
     }),
     getTasks: builder.query({
       query: () => `/project/task/`,
       providesTags: ["Task"],
     }),
+    getTaskDetails: builder.query({
+      query: (task_id) => `/project/task/${task_id}`,
+      providesTags: ["Task"],
+    }),
     getMemberTasks: builder.query({
       query: (member_id) => `/project/task/${member_id}/`,
       providesTags: ["Task"],
+    }),
+    addTask: builder.mutation({
+      query: (data) => ({
+        url: `/project/task/`,
+        body: data,
+        method: "POST",
+      }),
+      invalidatesTags: ["Task"],
+    }),
+    updateTask: builder.mutation({
+      query: (data) => ({
+        url: `/project/task/${data.id}/`,
+        body: data,
+        method: "PUT",
+      }),
+      invalidatesTags: ["Task"],
+    }),
+    deleteTask: builder.mutation({
+      query: (task_id) => ({
+        url: `/project/task/${task_id}/`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Task"],
     }),
 
     // messages queries
@@ -97,4 +132,10 @@ export const {
   useUpdateProjectMutation,
   useGetProjectMessagesQuery,
   useDeleteProjectMutation,
+  useGetProjectAssigneesQuery,
+  useAddTaskMutation,
+  useGetUsersQuery,
+  useDeleteTaskMutation,
+  useUpdateTaskMutation,
+  useGetTaskDetailsQuery,
 } = apiSlice;

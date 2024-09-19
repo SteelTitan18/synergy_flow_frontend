@@ -28,11 +28,15 @@ code {
 }
 
 .page-layout {
-  @apply p-5 text-black h-screen flex flex-col overflow-hidden;
+  @apply p-5 text-black h-screen flex flex-col overflow-y-scroll;
 }
 
 .button {
   @apply flex items-center px-2 py-1 rounded-md bg-dark-blue text-white font-bold hover:shadow-md text-xl text-center gap-2;
+}
+
+.delete-button {
+  @apply flex items-center px-2 py-1 rounded-md bg-red text-white font-bold hover:shadow-md text-xl text-center gap-2;
 }
 
 .cancel-button {
